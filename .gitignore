@@ -35,3 +35,6 @@
 *.swp
 .vscode
 .DS_Store
+
+# 툴 환경
+.idea
