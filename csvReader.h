@@ -6,7 +6,7 @@
 //
 //  Created by JeonHyeonBae on 2023/11/15.
 //
-#include "sort.h"
+#include "sort_algorithms/sort.h"
 
 object reset_data(char *data,int data_num)
 {

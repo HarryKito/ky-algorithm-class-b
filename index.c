@@ -10,13 +10,12 @@
 #define MAXCHAR 40
 #define ROWS 30000
 
-object obj[ROWS];
-
 int main(int argc,char** argv)
 {
     FILE *fp = openFile(0); //파일 객체를 담을 변수
     char *cell;		            //전체 데이터 정보
     char row[MAXCHAR];          //열 데이터
+    object obj[ROWS];
 
     for(int i = 0; feof(fp) == 0; i++) // 파일에서 정보수집 시작 <<반복문>>
     {

@@ -6,7 +6,7 @@
 #include <string.h>
 #include <time.h>
 #include <stdbool.h>
-#include "sort.h"
+#include "sort_algorithms/sort.h"
 #include "csvReader.h"
 
 //          0 : data/del.csv 파일

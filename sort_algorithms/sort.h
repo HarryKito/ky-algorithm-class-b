@@ -11,14 +11,6 @@
 //  TODO: 기수정렬 사용예정
 //  Created by JeonHyeonBae on 2023/11/15.
 //  날짜 분류함수
-void* sort_date(char* date)
-{
-    static int max_year = 0;
-    int _year = atoi(date);
-
-    if(_year > max_year)
-        max_year = _year; //최대연도 구하기
-}
 
 // 64bit기준 2word
 typedef struct object{
