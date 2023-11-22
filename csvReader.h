@@ -8,23 +8,6 @@
 //
 #include "sort.h"
 
-struct tm get_date(char* data,int i)
-{
-    struct tm time;
-    char str[9];
-    int s;
-
-    for(s = 0;s<8;s++)
-        str[s] = data[s];
-
-    if(strftime(str,sizeof(str),"%Y%m%d",&time) == NULL)
-    {
-        fprintf(stderr,"%d번째, 날짜 데이터 오류\n",i);
-        exit(2);
-    }
-    return time;
-}
-
 object reset_data(char *data,int data_num)
 {
     object obj;
