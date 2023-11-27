@@ -31,7 +31,7 @@ object* date_sort(object obj[],unsigned int count)
         else if (Yearmax < num)
             Yearmax = num;
     }
-    int *dates =(int *)malloc(sizeof(int)*(Yearmax-Yearmin));
+//    int *dates =(int *)malloc(sizeof(int)*(Yearmax-Yearmin));
     printf("Year min : %d\nYear max : %d\n Years[%d]\n",Yearmin,Yearmax,Yearmax-Yearmin);
     return result;
 }
