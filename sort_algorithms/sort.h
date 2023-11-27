@@ -5,6 +5,9 @@
 #ifndef ALGORITHM_TEAM_6_SORT_H
 #define ALGORITHM_TEAM_6_SORT_H
 
+#define MAXCHAR 40
+#define ROWS 30000
+
 #include <stdlib.h>
 //  sort.h
 //  sort_date()

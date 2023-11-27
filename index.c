@@ -7,9 +7,6 @@
  */
 #include "includes.h"
 
-#define MAXCHAR 40
-#define ROWS 30000
-
 int main(int argc,char** argv)
 {
     FILE *fp = openFile(0); //파일 객체를 담을 변수
@@ -24,8 +21,8 @@ int main(int argc,char** argv)
         cell = strtok(row, "\n");
         obj[i] = reset_data(cell,i);
     }
-    //date sort
-    date_sort(obj,ROWS);
+    // 날짜정렬
+    object *object_date = date_sort(obj,ROWS);
   
      // 퀵 정렬 수행 (info 기준으로)
     quickSort(obj, 0, ROWS - 1);

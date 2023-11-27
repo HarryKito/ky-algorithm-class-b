@@ -5,7 +5,7 @@
 //  get_date(string, int)
 //
 //  Created by JeonHyeonBae on 2023/11/15.
-//
+//  CSV 앍고 데이터 리셋
 #include "sort_algorithms/sort.h"
 
 object reset_data(char *data,int data_num)

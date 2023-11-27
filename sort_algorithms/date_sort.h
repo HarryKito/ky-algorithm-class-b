@@ -14,11 +14,13 @@
  *      2. 각 연도별 내에서 기수정렬 형태를 사용.
  *      12개월 [2][10] 31일[4][10]
  */
+//int find(int i)
+//{ printf("found! %d\n",i); return i;}
+
 object* date_sort(object obj[],unsigned int count)
 {
     object result[count];
     int Yearmin = (int)obj->date/10000, Yearmax = 0;
-
     int Year_size = 0;
     for (int i = 0; i < count; ++i)
     {
@@ -29,7 +31,7 @@ object* date_sort(object obj[],unsigned int count)
         else if (Yearmax < num)
             Yearmax = num;
     }
-
+    int *dates =(int *)malloc(sizeof(int)*(Yearmax-Yearmin));
     printf("Year min : %d\nYear max : %d\n Years[%d]\n",Yearmin,Yearmax,Yearmax-Yearmin);
     return result;
 }
