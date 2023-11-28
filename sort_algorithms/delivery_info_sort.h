@@ -8,10 +8,8 @@
 #include "sort.h"
 #include <string.h>
 
-object* delivery_info(object obj[])
+void delivery_info(object obj[])
 {
-    object result[30000];
-    return result;
 }
 
 // 퀵정렬을 위한 파티션 함수

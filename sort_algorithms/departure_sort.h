@@ -7,10 +7,8 @@
 
 #include "sort.h"
 
-object* departure(object obj[])
+void departure(object obj[])
 {
-    object result[30000];
-    return result;
 }
 
 #endif //ALGORITHM_TEAM_6_DEPARTURE_SORT_H

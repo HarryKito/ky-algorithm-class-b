@@ -16,11 +16,16 @@
 //  날짜 분류함수
 
 // 64bit기준 2word
+
+#ifndef uint16_t
+typedef unsigned short uint16_t;
+#endif
+
 typedef struct object{
     unsigned int data_num;
     unsigned int date;
-    char departure[4];
-    char arrival[4];
+    uint16_t Ideparture;
+    uint16_t Iarrival;
     char info[3];
 }object;
 

@@ -12,7 +12,7 @@ int main(int argc,char** argv)
     FILE *fp = openFile(0); //파일 객체를 담을 변수
     char *cell;		            //전체 데이터 정보
     char row[MAXCHAR];          //열 데이터
-    object obj[30000];
+    object obj[ROWS];
 
     // 파일에서 정보수집
     for(int i = 0; feof(fp) == 0; i++)
@@ -22,13 +22,13 @@ int main(int argc,char** argv)
         obj[i] = reset_data(cell,i);
     }
     // 날짜정렬
-    object *object_date = date_sort(obj,ROWS);
+    date_sort(obj,ROWS);
   
      // 퀵 정렬 수행 (info 기준으로)
     quickSort(obj, 0, ROWS - 1);
 
     for (int j = 0; j < ROWS; ++j)
-        printf("obj%ld{%d / %s / %s / %s }\n",obj[j].data_num+1,obj[j].date,obj[j].departure,obj[j].arrival,obj[j].info);
+        printf("obj%u{%d / %d / %d / %s }\n",obj[j].data_num+1,obj[j].date,obj[j].Ideparture,obj[j].Iarrival,obj[j].info);
     puts("데이터셋 읽기 종료");
 
     return 0;

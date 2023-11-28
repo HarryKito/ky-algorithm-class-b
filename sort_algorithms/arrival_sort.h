@@ -7,10 +7,8 @@
 
 #include "sort.h"
 
-object* arrival(object obj[])
+void arrival(object obj[])
 {
-    object result[30000];
-    return result;
 }
 
 

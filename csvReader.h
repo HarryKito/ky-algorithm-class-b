@@ -24,16 +24,19 @@ object reset_data(char *data,int data_num)
     obj.date = atoi(str);
 
     //출발지 파싱
-    obj.departure[0] = data[8];
-    obj.departure[1] = data[9];
-    obj.departure[2] = data[10];
-    obj.departure[3] = '\0'; // escape 문자 문제해결
+    char loc[4];
+    loc[0] = data[8];
+    loc[1] = data[9];
+    loc[2] = data[10];
+    loc[3] = '\0'; // escape 문자 문제해결
+    obj.Ideparture = atoi(loc);
 
     //도착지 파싱
-    obj.arrival[0] = data[11];
-    obj.arrival[1] = data[12];
-    obj.arrival[2] = data[13];
-    obj.arrival[3] = '\0'; // escape 문자 문제해결
+    loc[0] = data[11];
+    loc[1] = data[12];
+    loc[2] = data[13];
+    loc[3] = '\0'; // escape 문자 문제해결
+    obj.Iarrival = atoi(loc);
 
     //현재 택배 정보 파싱
     obj.info[0] = data[14];
