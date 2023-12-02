@@ -19,7 +19,7 @@ int main(int argc,char** argv)
     {
         fgets(row, MAXCHAR, fp);
         cell = strtok(row, "\n");
-        obj[i] = reset_data(cell,sizeof(cell)/sizeof(char),i);
+        obj[i] = reset_data(cell,strlen(cell),i);
     }
     // 날짜정렬
     date_sort(obj,ROWS);
