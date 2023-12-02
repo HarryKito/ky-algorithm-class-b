@@ -8,7 +8,7 @@
 //  CSV 앍고 데이터 리셋
 #include "sort_algorithms/sort.h"
 
-object reset_data(char *data,int data_num)
+object reset_data(char *data,int len_data,int data_num)
 {
     object obj;
     char str[8];
@@ -39,8 +39,8 @@ object reset_data(char *data,int data_num)
     obj.Iarrival = atoi(loc);
 
     //현재 택배 정보 파싱
-    obj.info[0] = data[14];
-    obj.info[1] = data[15];
+    obj.info[0] = data[len_data - 2];
+    obj.info[1] = data[len_data - 1];
     obj.info[2] = '\0'; // escape 문자 문제해결
 
     return obj;

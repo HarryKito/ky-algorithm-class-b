@@ -16,38 +16,42 @@
  *      메모리 활용방법 vs 전체 기수정렬
  *      단순 big-O 표기
  */
-//int find(int i)
-//{ printf("found! %d\n",i); return i;}
-int min_year(int year,int *arr)
+#define uint unsigned int
+
+void SortData(object obj)
 {
-    realloc(arr, sizeof(int));
-    printf("realloc on %d",year);
-    return year;
-}
-int max_year(int year,int *arr,int size)
-{
-    if (NULL == (arr = realloc(arr,sizeof(int))))
-    {}
-    arr[size]=1;
+    int sorts[10][ROWS];
+
 }
 
-void date_sort(object obj[],unsigned int count)
+void getYearMin_Max(object *obj,uint count,uint *min,uint *max)
 {
-    unsigned int Yearmin = ~(0x00), Yearmax = 0;
-    int *year_arguments = (int *)calloc(0,sizeof(int));
     for (int i = 0; i < count; ++i)
     {
         int num = (int)obj[i].date/10000;
 
-        if(Yearmin > num)
-            Yearmin = min_year(num,year_arguments);
-        else if (Yearmax < num)
-            Yearmax = num;
-//        else
+        if(*min > num)
+            *min = num;
+        else if (*max < num)
+            *max = num;
     }
-//    int *dates =(int *)malloc(sizeof(int)*(Yearmax-Yearmin));
-    printf("Year min : %d\nYear max : %d\n Years[%d]\n",Yearmin,Yearmax,(Yearmax-Yearmin+1));
-    free(year_arguments);
 }
 
+void date_sort(object obj[],uint count)
+{
+    unsigned int Yearmin = ~(0x00), Yearmax = 0;
+
+    object *result;
+    getYearMin_Max(obj,count,&Yearmin,&Yearmax);
+
+    //TODO: sort sequence
+    //       MARK:: 일수 -> 월수 -> 년(이건 굳이 기수정렬을 써야할까? 다른 형태로 가능할거같음.)
+    //          FIXED:: L 년도는 위의 함수로 해결-!
+    //
+    for(int i = 0; i < count; ++i)
+    {
+        SortData(obj[i]);
+    }
+    printf("Year min : %d\nYear max : %d\n Years[%d]\n",Yearmin,Yearmax,(Yearmax-Yearmin+1));
+}
 #endif //ALGORITHM_TEAM_6_DATE_SORT_H
