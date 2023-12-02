@@ -9,13 +9,15 @@
 
 int main(int argc,char** argv)
 {
+    object obj[ROWS];
+
     FILE *fp = openFile(0); //파일 객체를 담을 변수
     char *cell;		            //전체 데이터 정보
     char row[MAXCHAR];          //열 데이터
-    object obj[ROWS];
 
     // 파일에서 정보수집
-    for(int i = 0; feof(fp) == 0; i++)
+    int i;
+    for(i = 0; feof(fp) == 0; i++)
     {
         fgets(row, MAXCHAR, fp);
         cell = strtok(row, "\n");
@@ -29,7 +31,7 @@ int main(int argc,char** argv)
 //    puts("데이터셋 읽기 종료");
 
      // 퀵 정렬 수행 (info 기준으로)
-    quickSort(obj, 0, ROWS - 1);
+//    quickSort(obj, 0, ROWS - 1);
 //    puts("인포메이션 끝");
 //    for (int j = 0; j < ROWS; ++j)
 //        printf("obj%u{%d / %d / %d / %s }\n",obj[j].data_num+1,obj[j].date,obj[j].Ideparture,obj[j].Iarrival,obj[j].info);

@@ -26,10 +26,8 @@ typedef unsigned short uint16_t;
 #endif
 
 #define uint unsigned int
-#define MAX_RADIX_ARR 30000
 
-typedef enum
-{
+typedef enum {
     d1 = 0,
     d10,
     m,
@@ -44,5 +42,9 @@ typedef struct object{
     char            info[3];    // 택배 배송 정보
 }object;
 
+typedef struct {
+    int data[ROWS];
+    int pointer;
+}element;
 
 #endif //ALGORITHM_TEAM_6_SORT_H

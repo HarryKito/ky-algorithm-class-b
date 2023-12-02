@@ -20,14 +20,11 @@ FILE *openFile(char* file)
     //파일 읽기, 만약 파일을 읽을 수 없다면 종료.
     if(!(fp = fopen(file,"r")))
     {
-        fputs("데이터셋을 읽을 수 없음.",stderr);
+        fputs("데이터셋 파일을 읽을 수 없음.",stderr);
         exit(1);
     }
     else
-    {
-        puts("Read file success");
         return fp;
-    }
 }
 
 /*
