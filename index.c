@@ -27,10 +27,6 @@ int main(int argc,char** argv)
     // 날짜정렬
     date_sort(obj,ROWS);
 
-//    for (int j = 0; j < ROWS; ++j)
-//        printf("obj%u{%d / %d / %d / %s }\n",obj[j].data_num+1,obj[j].date,obj[j].Ideparture,obj[j].Iarrival,obj[j].info);
-//    puts("데이터셋 읽기 종료");
-
      // 퀵 정렬 수행 (info 기준으로)
 //    quickSort(obj, 0, ROWS - 1);
 //    puts("인포메이션 끝");
