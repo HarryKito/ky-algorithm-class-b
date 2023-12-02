@@ -21,12 +21,28 @@
 typedef unsigned short uint16_t;
 #endif
 
+#ifndef INT32_MAX
+#define INT32_MAX 2147483647
+#endif
+
+#define uint unsigned int
+#define MAX_RADIX_ARR 30000
+
+typedef enum
+{
+    d1 = 0,
+    d10,
+    m,
+    y
+}sorting_criterion;
+
 typedef struct object{
-    unsigned int data_num;
-    unsigned int date;
-    uint16_t Ideparture;
-    uint16_t Iarrival;
-    char info[3];
+    unsigned int    data_num;   // 데이터 인덱스 넘버
+    unsigned int    date;       // 데이터 날짜 정보
+    uint16_t        Ideparture; // 도착지 정보
+    uint16_t        Iarrival;   // 출발지 정보
+    char            info[3];    // 택배 배송 정보
 }object;
+
 
 #endif //ALGORITHM_TEAM_6_SORT_H

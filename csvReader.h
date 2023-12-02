@@ -37,7 +37,6 @@ object reset_data(char *data,unsigned long len_data,int data_num)
 
     obj.date = (int)strtol(str, (char **)NULL, 10);
 
-
 //출발지 파싱
     if (len_data == 16)
     { obj.Ideparture = 2; }

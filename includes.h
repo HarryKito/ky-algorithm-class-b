@@ -35,7 +35,7 @@ FILE *openFile(char* file)
  *  program {분류형식}에 따라서 나열해줌.
  */
 /* 프로그램 실행 시 입력된 인자, 분류형식에 따라 분류하는 부가적 부분 */
-int sort_by_args(int argc,char** argv)
+int sortCommand(int argc,char** argv)
 {
     if (argc > 2)
         for (int i = 0; i < argc; ++i)
