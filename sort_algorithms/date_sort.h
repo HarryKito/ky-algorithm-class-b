@@ -64,6 +64,7 @@ void sort_MonthDay(object obj[],uint count)
 
 void sorting_radix(sorting_criterion criterion,object obj[], int count)
 {
+    if(criterion == d1)
     if (criterion == y)
     {
         int year_min;
@@ -84,19 +85,18 @@ void sorting_radix(sorting_criterion criterion,object obj[], int count)
             I_Resit[index].pointer++;
         }
 
-        int count = 0;
+        int cnt = 0;
         for( i = 0; i < years; i ++)
             for (j = 0; j < I_Resit[i].pointer; ++j)
             {
-                result[count] = obj[I_Resit[i].data[j]];
-                count++;
-//                printf("obj%u{%d / %d / %d / %s }\n",result[j].data_num+1,result[j].date,result[j].Ideparture,result[j].Iarrival,result[j].info);
-//                printf("Result[%d] is %d | count %d\n",year_min+i,I_Resit[i].data[j]+1,count);
+                result[cnt] = copy(obj[I_Resit[i].data[j]]);
+//                printf("result%u{%d / %d / %d / %s }\n",result[cnt].data_num+1,result[cnt].date,result[cnt].Ideparture,result[cnt].Iarrival,result[cnt].info);
+                cnt++;
+//                printf("Result[%d] is %d | count %d\n",year_min+i,I_Resit[i].data[j]+1,cnt);
             }
 
-        memcpy(obj,result, sizeof(result));
         for (i = 0; i < count; i++)
-            printf("Year -> obj%u{%d / %d / %d / %s }\n",obj[j].data_num+1,obj[j].date,obj[j].Ideparture,obj[j].Iarrival,obj[j].info);
+            obj[i] = copy(result[i]);
 
         free(I_Resit);
     }

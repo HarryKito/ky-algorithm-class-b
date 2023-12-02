@@ -47,4 +47,17 @@ typedef struct {
     int pointer;
 }element;
 
+object copy(object in)
+{
+    object obj;
+    obj.data_num = in.data_num;
+    obj.date = in.date;
+    obj.Ideparture = in.Ideparture;
+    obj.Iarrival = in.Iarrival;
+    obj.info[0] = in.info[0];
+    obj.info[1] = in.info[1];
+    obj.info[2] = in.info[2];
+    return obj;
+}
+
 #endif //ALGORITHM_TEAM_6_SORT_H
