@@ -63,16 +63,43 @@ object copy(object in,int number)
     return obj;
 }
 
-void swap(object to,object from)
+void swap(object *to,object *from)
 {
-    to.data_num = from.data_num;
-    to.date = from.date;
-    to.Ideparture = from.Ideparture;
-    to.Iarrival = from.Iarrival;
-    to.info[0] = from.info[0];
-    to.info[1] = from.info[1];
-    to.info[2] = from.info[2];
+    to->data_num = from->data_num;
+    to->date = from->date;
+    to->Ideparture = from->Ideparture;
+    to->Iarrival = from->Iarrival;
+    to->info[0] = from->info[0];
+    to->info[1] = from->info[1];
+    to->info[2] = from->info[2];
 }
+
+//void SWAP(object x, object y, object temp)
+//{
+//    temp.data_num = x.data_num;
+//    temp.date = x.date;
+//    temp.Ideparture = x.Ideparture;
+//    temp.Iarrival = x.Iarrival;
+//    temp.info[0] = x.info[0];
+//    temp.info[1] = x.info[1];
+//    temp.info[2] = x.info[2];
+//
+//    x.data_num = y.data_num;
+//    x.date = y.date;
+//    x.Ideparture = y.Ideparture;
+//    x.Iarrival = y.Iarrival;
+//    x.info[0] = y.info[0];
+//    x.info[1] = y.info[1];
+//    x.info[2] = y.info[2];
+//
+//    y.data_num = temp.data_num;
+//    y.date = temp.date;
+//    y.Ideparture = temp.Ideparture;
+//    y.Iarrival = temp.Iarrival;
+//    y.info[0] = temp.info[0];
+//    y.info[1] = temp.info[1];
+//    y.info[2] = temp.info[2];
+//}
 
 #define SWAP(x,y,t) (swap(t,x),swap(x,y),swap(y,t))
 

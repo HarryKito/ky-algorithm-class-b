@@ -28,10 +28,10 @@ int partition(object arr[], int left, int right )
         do
             high--;
         while (arr[high].Ideparture>pivot);
-        if (low<high) SWAP(arr[low], arr[high], temp);
+        if (low<high) SWAP(&arr[low], &arr[high], &temp);
         } while (low<high);
 
-    SWAP(arr[left], arr[high], temp);
+    SWAP(&arr[left], &arr[high], &temp);
     return high;
 
     }
@@ -41,11 +41,6 @@ int partition(object arr[], int left, int right )
 // 퀵정렬 함수
 void quicksort(object arr[], int left, int right)
 {
-    for (int i = 0; i < 30000; ++i)
-    {
-     int a =    arr[i].Ideparture;
-    }
-
     if (left<right){
         int pi = partition(arr, left, right);
         quicksort(arr, left, pi - 1);

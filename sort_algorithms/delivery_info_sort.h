@@ -21,7 +21,7 @@ int partition(object arr[], int low, int high) {
             object temp = arr[i];
 //            arr[i] = arr[j];
 //            arr[j] = temp;
-            SWAP(arr[i + 1],arr[high],temp);
+            SWAP(&arr[i + 1],&arr[high],&temp);
         }
     }
 
@@ -29,7 +29,7 @@ int partition(object arr[], int low, int high) {
     object temp = arr[i + 1];
 //    arr[i + 1] = arr[high];
 //    arr[high] = temp;
-    SWAP(arr[i + 1],arr[high],temp);
+    SWAP(&arr[i + 1],&arr[high],&temp);
 
     return i + 1;
 }
