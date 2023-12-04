@@ -1,12 +1,6 @@
 #ifndef READER_CSV
 #define READER_CSV
 
-//  csvReader.h
-//  get_date(string, int)
-//
-//  Created by JeonHyeonBae on 2023/11/15.
-//  CSV 앍고 데이터 리셋 (오브젝트로)
-
 #include "sort_algorithms/sort.h"
 enum location {
     SEOUL = 2,
@@ -16,13 +10,23 @@ enum location {
     CHUNGNAM = 41,
     DAEJEON = 42,
     CHUNGBUK = 43,
-
+    SAEJONG = 44,
+    BUSAN = 51,
+    ULSAN = 52,
+    DAEGU = 32,
+    GYUNGBOOK = 54,
+    GYUNGNAM = 55,
+    JEONNAM = 61,
+    GWANGJU = 62,
+    JEONBUK = 63,
     JEJU = 64
 };
 
+//  csvReader.h
+//  reset_data(char* ,unsigned long ,int) --> object
+//  CSV 앍고 데이터 리셋 (오브젝트로)
 object reset_data(char *data,unsigned long len_data,int data_num)
 {
-//    printf("%d data len %d\n",data_num+1,len_data);
     object obj;
     char str[8]; // 날짜정보
     char loc[4]; // 지역정보

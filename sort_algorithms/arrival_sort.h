@@ -6,12 +6,46 @@
 #define ALGORITHM_TEAM_6_ARRIVAL_SORT_H
 
 #include "sort.h"
-
-// 도착정보
-void arrival(object obj[])
+// 파티션 함수
+int ari_partition(object arr[], int left, int right )
 {
+    int pivot;
+    object temp;
+    int low, high;
+
+    low = left;
+    high = right + 1;
+    pivot = arr[left].Iarrival;
+    do {
+        do
+            low++;
+        while (arr[low].Iarrival<pivot);
+        do
+            high--;
+        while (arr[high].Iarrival>pivot);
+        if (low<high) SWAP(arr[low], arr[high], temp);
+    } while (low<high);
+
+    SWAP(arr[left], arr[high], temp);
+    return high;
 
 }
 
 
+
+// 퀵정렬 함수
+void quicksort(object arr[], int left, int right)
+{
+    if (left<right){
+        int pi = ari_partition(arr, left, right);
+        quicksort(arr, left, pi - 1);
+        quicksort(arr, pi + 1, right);
+    }
+}
+
+// 도착정보
+void arrival_sort(object obj[],int count)
+{
+    quicksort(obj,0,count-1);
+}
 #endif //ALGORITHM_TEAM_6_ARRIVAL_SORT_H
