@@ -63,6 +63,18 @@ object copy(object in,int number)
     return obj;
 }
 
-#define SWAP(x,y,t) (copy(t,x),copy(x,y),copy(y,t))
+void _copy(object in,int number)
+{
+    object obj;
+    obj.data_num = number;
+    obj.date = in.date;
+    obj.Ideparture = in.Ideparture;
+    obj.Iarrival = in.Iarrival;
+    obj.info[0] = in.info[0];
+    obj.info[1] = in.info[1];
+    obj.info[2] = in.info[2];
+}
+
+#define SWAP(x,y,t) (_copy(t,x),_copy(x,y),_copy(y,t))
 
 #endif //ALGORITHM_TEAM_6_SORT_H
