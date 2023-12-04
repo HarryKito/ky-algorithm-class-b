@@ -63,18 +63,17 @@ object copy(object in,int number)
     return obj;
 }
 
-void _copy(object in,int number)
+void swap(object to,object from)
 {
-    object obj;
-    obj.data_num = number;
-    obj.date = in.date;
-    obj.Ideparture = in.Ideparture;
-    obj.Iarrival = in.Iarrival;
-    obj.info[0] = in.info[0];
-    obj.info[1] = in.info[1];
-    obj.info[2] = in.info[2];
+    to.data_num = from.data_num;
+    to.date = from.date;
+    to.Ideparture = from.Ideparture;
+    to.Iarrival = from.Iarrival;
+    to.info[0] = from.info[0];
+    to.info[1] = from.info[1];
+    to.info[2] = from.info[2];
 }
 
-#define SWAP(x,y,t) (_copy(t,x),_copy(x,y),_copy(y,t))
+#define SWAP(x,y,t) (swap(t,x),swap(x,y),swap(y,t))
 
 #endif //ALGORITHM_TEAM_6_SORT_H
