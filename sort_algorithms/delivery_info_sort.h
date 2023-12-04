@@ -8,10 +8,6 @@
 #include "sort.h"
 #include <string.h>
 
-void delivery_info(object obj[])
-{
-}
-
 // 퀵정렬을 위한 파티션 함수
 int partition(object arr[], int low, int high) {
     char pivot[3];
@@ -23,15 +19,17 @@ int partition(object arr[], int low, int high) {
             i++;
             // 구조체 교환
             object temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
+//            arr[i] = arr[j];
+//            arr[j] = temp;
+            SWAP(arr[i + 1],arr[high],temp);
         }
     }
 
     // 구조체 교환
     object temp = arr[i + 1];
-    arr[i + 1] = arr[high];
-    arr[high] = temp;
+//    arr[i + 1] = arr[high];
+//    arr[high] = temp;
+    SWAP(arr[i + 1],arr[high],temp);
 
     return i + 1;
 }
@@ -43,6 +41,11 @@ void quickSort(object arr[], int low, int high) {
         quickSort(arr, low, pi - 1);
         quickSort(arr, pi + 1, high);
     }
+}
+
+void delivery_info(object obj[],int count)
+{
+    quickSort(obj, 0, count - 1);
 }
 
 #endif //ALGORITHM_TEAM_6_DELIVERY_INFO_SORT_H

@@ -31,9 +31,9 @@ int main(int argc,char** argv)
     //출착지 정렬    //도착지 정렬
 //    departure_sort(obj,ROWS);
 
-    arrival_sort(obj,ROWS);
+//    arrival_sort(obj,ROWS);
      // 퀵 정렬 수행 (info 기준으로)
-//    quickSort(obj, 0, ROWS - 1);
+    delivery_info(obj,ROWS);
 //    puts("인포메이션 끝");
     for (int j = 0; j < ROWS; ++j)
         printf("obj%u{%d / %d / %d / %s }\n",obj[j].data_num+1,obj[j].date,obj[j].Ideparture,obj[j].Iarrival,obj[j].info);
