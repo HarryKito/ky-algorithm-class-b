@@ -7,6 +7,7 @@
 #include <stdbool.h>
 
 #include "sort_algorithms/delivery_info_sort.h"
+#include "sort_algorithms/arrival_sort.h"
 #include "sort_algorithms/date_sort.h"
 #include "csvReader.h"
 
