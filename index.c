@@ -23,10 +23,15 @@ int main(int argc,char** argv)
         cell = strtok(row, "\n");
         obj[i] = reset_data(cell,strlen(cell),i);
     }
+    // 프로그램 입력에 따른 정렬 기준 선택
     sortCommand(argc,argv);
+
     // 날짜정렬
     date_sort(obj,ROWS);
-
+    //출착지 정렬
+//    departure_sort(obj,ROWS);
+    //도착지 정렬
+//    arrival_sort(obj,ROWS);
      // 퀵 정렬 수행 (info 기준으로)
 //    quickSort(obj, 0, ROWS - 1);
 //    puts("인포메이션 끝");

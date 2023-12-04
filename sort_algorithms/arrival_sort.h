@@ -7,8 +7,10 @@
 
 #include "sort.h"
 
+// 도착정보
 void arrival(object obj[])
 {
+
 }
 
 

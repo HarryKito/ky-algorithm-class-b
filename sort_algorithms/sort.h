@@ -42,15 +42,18 @@ typedef struct object{
     char            info[3];    // 택배 배송 정보
 }object;
 
+// element 자료구조
+// 데이터 값
+// 데이터를 가리키는 포인터
 typedef struct {
     int data[ROWS];
     int pointer;
 }element;
 
-object copy(object in)
+object copy(object in,int number)
 {
     object obj;
-    obj.data_num = in.data_num;
+    obj.data_num = number;
     obj.date = in.date;
     obj.Ideparture = in.Ideparture;
     obj.Iarrival = in.Iarrival;

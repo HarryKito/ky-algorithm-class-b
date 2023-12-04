@@ -31,84 +31,136 @@ int getYearMin_Max(object *obj,uint count,int *Yearmin)
     *Yearmin = min;
     years = max-min+1; // 배열 사이즈
 
-//    if((years = (int *) calloc((*size),sizeof(int))) == NULL)
-//    {fprintf(stderr,"연도 데이터 정렬 중 메모리 할당 오류"); exit(1);}
-
-//    for (i = 0; i < count; ++i)
-//    {
-//        int num = (int)obj[i].date/10000;
-//        years[num-min] += 1;
-//    }
     return years;
-}
-
-void sort_MonthDay(object obj[],uint count)
-{
-    int data_num;
-    int date_value;
-
-    int month,day_10,day_1; // 날짜정보들
-
-    int i;
-    for (i = 0; i < count; ++i)
-    {
-        data_num = (int)obj[i].data_num;
-        date_value = (int)obj[i].date%10000;
-        month = date_value / 100;
-        day_10 = ( date_value / 10 ) % 10;
-        day_1 = ( date_value % 10 );
-
-//        printf("[%d]date value = %d월 %d%d일 \n",data_num+1,month,day_10,day_1);
-    }
 }
 
 void sorting_radix(sorting_criterion criterion,object obj[], int count)
 {
-    if(criterion == d1)
-    if (criterion == y)
+    // 최종 결과값 담을 것.
+    object result[count];
+
+    switch (criterion)
     {
-        int year_min;
-        object result[count];
-        int i,j;
-        int years = getYearMin_Max(obj,count,&year_min);
-
-        // 필요한 배열 필요한 갯수만큼 할당.
-        element *I_Resit = malloc(sizeof(element)*years);
-
-        for (i = 0; i < years; ++i)
-            I_Resit[i].pointer = 0;
-
-        for (i = 0; i < count; ++i)
+        // day 일의자리
+        case d1:
         {
-            int index = (int) ((obj[i].date / 10000) - year_min) ;
-            I_Resit[index].data[I_Resit[index].pointer] = (int) obj[i].data_num;
-            I_Resit[index].pointer++;
-        }
+            element I_Result[10];
+            int day_1;
+            int i,j,cnt = 0;
 
-        int cnt = 0;
-        for( i = 0; i < years; i ++)
-            for (j = 0; j < I_Resit[i].pointer; ++j)
+            for (i = 0; i < 10; ++i)    I_Result[i].pointer = 0;
+
+            for (i = 0; i < count; ++i)
             {
-                result[cnt] = copy(obj[I_Resit[i].data[j]]);
-//                printf("result%u{%d / %d / %d / %s }\n",result[cnt].data_num+1,result[cnt].date,result[cnt].Ideparture,result[cnt].Iarrival,result[cnt].info);
-                cnt++;
-//                printf("Result[%d] is %d | count %d\n",year_min+i,I_Resit[i].data[j]+1,cnt);
+                day_1 = ( ( (int) obj[i].date%10000 ) % 10 );
+                I_Result[day_1].data[I_Result[day_1].pointer] = (int) obj[i].data_num;
+                I_Result[day_1].pointer++;
             }
 
-        for (i = 0; i < count; i++)
-            obj[i] = copy(result[i]);
+            for( i = 0; i < 10; i ++)
+                for (j = 0; j < I_Result[i].pointer; ++j)
+                {
+                    result[cnt] = copy(obj[I_Result[i].data[j]],cnt);
+                    cnt++;
+                }
+            break;
+        }
 
-        free(I_Resit);
+        // day 십의자리
+        case d10:
+        {
+            element I_Result[4];
+            int day_10;
+            int i,j,cnt = 0;
+
+            for (i = 0; i < 4; ++i)    I_Result[i].pointer = 0;
+
+            for (i = 0; i < count; ++i)
+            {
+                day_10 = ( (int) (obj[i].date%10000) / 10 ) % 10;
+                I_Result[day_10].data[I_Result[day_10].pointer] = (int) obj[i].data_num;
+                I_Result[day_10].pointer++;
+            }
+
+            for( i = 0; i < 4; i ++)
+                for (j = 0; j < I_Result[i].pointer; ++j)
+                {
+                    result[cnt] = copy(obj[I_Result[i].data[j]],cnt);
+                    cnt++;
+                }
+            break;
+        }
+
+        // Month
+        case m:
+        {
+            element I_Result[12];
+            int month;
+            int i,j,cnt = 0;
+            for (i = 0; i < 12; ++i)    I_Result[i].pointer = 0;
+
+            for (i = 0; i < count; ++i)
+            {
+                month = ( (int) (obj[i].date%10000) / 100 );
+                I_Result[month-1].data[I_Result[month-1].pointer] = (int) obj[i].data_num;
+                I_Result[month-1].pointer++;
+            }
+
+            for( i = 0; i < 12; i ++)
+                for (j = 0; j < I_Result[i].pointer; j++)
+                {
+                    result[cnt] = copy(obj[I_Result[i].data[j]],cnt);
+                    cnt++;
+                }
+            break;
+        }
+        // Year
+        case y:
+        {
+            int year_min;   // Minimum value according to years
+            int i,j,cnt = 0;// 반복문에서 사용.. USE AFTER INIT!!
+            int index;      // Year Index [현재 연도 - 최소 연도 = 0 ~ n 번 ]
+            int years = getYearMin_Max(obj,count,&year_min);
+
+            // Allocate for Indexing by years
+            element *I_Result = malloc(sizeof(element)*years);
+
+            for (i = 0; i < years; ++i)
+                I_Result[i].pointer = 0;
+
+            for (i = 0; i < count; ++i)
+            {
+                index = (int) ((obj[i].date / 10000) - year_min) ;
+                I_Result[index].data[I_Result[index].pointer] = (int) obj[i].data_num;
+                I_Result[index].pointer++;
+            }
+
+            for( i = 0; i < years; i ++)
+                for (j = 0; j < I_Result[i].pointer; ++j)
+                {
+                    result[cnt] = copy(obj[I_Result[i].data[j]],cnt);
+                    cnt++;
+                }
+            free(I_Result);
+            break;
+        }
+        default: { fprintf(stderr,"sorting_criterion selection ERROR\n"); exit(2); }
     }
+    int i;
+    for (i = 0; i < count; i++)
+        obj[i] = copy(result[i],i);
+    printf("sorted:%d\n",criterion);
 }
 // 예상 호출 구조
 // _main(args) -> date_sort(obj,cnt) -> sorting_radix()
 void date_sort(object obj[],int count)
 {
+    int i;
+    sorting_radix(d1,obj,count);
+    sorting_radix(d10,obj,count);
+    sorting_radix(m,obj,count);
     sorting_radix(y,obj,count);
-    //TODO: sort sequence
-    //       MARK:: 일수 -> 월수 -> 년 (기수형태 형식으로 하되, 년도는 경우의 수가 많지 않다는 점을 고려하여 기수정렬과 유사하나 변형한 형태로 사용.)
-    //          FIXED:: L 년도는 위의 함수로 해결-!
-//    sort_MonthDay(obj, count);
+//    for (i = 0; i < count; i++)
+//        printf("year_sorted%u{%d / %d / %d / %s }\n",obj[i].data_num+1,obj[i].date,obj[i].Ideparture,obj[i].Iarrival,obj[i].info);
 }
 #endif //ALGORITHM_TEAM_6_DATE_SORT_H
