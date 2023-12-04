@@ -63,4 +63,6 @@ object copy(object in,int number)
     return obj;
 }
 
+#define SWAP(x,y,t) (copy(t,x),copy(x,y),copy(y,t))
+
 #endif //ALGORITHM_TEAM_6_SORT_H
