@@ -33,13 +33,29 @@ FILE *openFile(char* file)
  *  program {분류형식}에 따라서 나열해줌.
  */
 /* 프로그램 실행 시 입력된 인자, 분류형식에 따라 분류하는 부가적 부분 */
-int sortCommand(int argc,char** argv)
+int sortCommand(int argc,char** argv,object obj[])
 {
-    if (argc > 2)
+    if (argc >= 2)
+    {
         for (int i = 0; i < argc; ++i)
-            printf("argv : {%s}",argv[i]);
+            printf("argv : {%s}\n",argv[i]);
+        exit(0);
+
+        //  날짜정렬
+//    date_sort(obj,ROWS);
+//  출착지 정렬
+//    departure_sort(obj,ROWS);
+//  도착지 정렬
+//    arrival_sort(obj,ROWS);
+//  배송정보기준 정렬
+//    delivery_info(obj,ROWS);
+
+
+    }
+
     else
-        puts("입력된 인자 없음.");
+        //
+        fprintf(stderr,"Arguments not detected.\n Usage : %s [-]\n",argv[0]);
 }
 
 #endif

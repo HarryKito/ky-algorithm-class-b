@@ -7,12 +7,8 @@
 
 #include "sort.h"
 
-void departure(object obj[])
-{
-}
-
 // 파티션 함수
-int partition(object arr[], int left, int right )
+int dep_partition(object arr[], int left, int right )
 {
     int pivot;
     object temp;
@@ -36,15 +32,16 @@ int partition(object arr[], int left, int right )
 
     }
 
-
-
 // 퀵정렬 함수
-void quicksort(object arr[], int left, int right)
+void dep_quicksort(object arr[], int left, int right)
 {
     if (left<right){
-        int pi = partition(arr, left, right);
-        quicksort(arr, left, pi - 1);
-        quicksort(arr, pi + 1, right);
+        int pi = dep_partition(arr, left, right);
+        dep_quicksort(arr, left, pi - 1);
+        dep_quicksort(arr, pi + 1, right);
     }
 }
+
+void departure_sort(object obj[],int count)
+{ dep_quicksort(obj,0,count); }
 #endif //ALGORITHM_TEAM_6_DEPARTURE_SORT_H

@@ -9,7 +9,7 @@
 #include <string.h>
 
 // 퀵정렬을 위한 파티션 함수
-int partition(object arr[], int low, int high) {
+int del_partition(object arr[], int low, int high) {
     char pivot[3];
     strncpy(pivot, arr[high].info, 3);
     int i = low - 1;
@@ -35,17 +35,15 @@ int partition(object arr[], int low, int high) {
 }
 
 // 퀵 정렬 함수
-void quickSort(object arr[], int low, int high) {
+void del_quickSort(object arr[], int low, int high) {
     if (low < high) {
-        int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
+        int pi = del_partition(arr, low, high);
+        del_quickSort(arr, low, pi - 1);
+        del_quickSort(arr, pi + 1, high);
     }
 }
 
 void delivery_info(object obj[],int count)
-{
-    quickSort(obj, 0, count - 1);
-}
+{ del_quickSort(obj, 0, count - 1); }
 
 #endif //ALGORITHM_TEAM_6_DELIVERY_INFO_SORT_H

@@ -23,29 +23,24 @@ int ari_partition(object arr[], int left, int right )
         do
             high--;
         while (arr[high].Iarrival>pivot);
-        if (low<high) SWAP(arr[low], arr[high], temp);
+        if (low<high) SWAP(&arr[low], &arr[high], &temp);
     } while (low<high);
 
-    SWAP(arr[left], arr[high], temp);
+    SWAP(&arr[left], &arr[high], &temp);
     return high;
-
 }
 
-
-
 // 퀵정렬 함수
-void quicksort(object arr[], int left, int right)
+void ari_quicksort(object arr[], int left, int right)
 {
     if (left<right){
         int pi = ari_partition(arr, left, right);
-        quicksort(arr, left, pi - 1);
-        quicksort(arr, pi + 1, right);
+        ari_quicksort(arr, left, pi - 1);
+        ari_quicksort(arr, pi + 1, right);
     }
 }
 
 // 도착정보
 void arrival_sort(object obj[],int count)
-{
-    quicksort(obj,0,count-1);
-}
+{ ari_quicksort(obj,0,count); }
 #endif //ALGORITHM_TEAM_6_ARRIVAL_SORT_H

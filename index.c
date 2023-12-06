@@ -24,22 +24,10 @@ int main(int argc,char** argv)
         obj[i] = reset_data(cell,strlen(cell),i);
     }
     // 프로그램 입력에 따른 정렬 기준 선택
-    sortCommand(argc,argv);
-    puts("before");
-    for (int j = 0; j < ROWS; ++j)
-        printf("obj%u{%d / %d / %d / %s }\n",obj[j].data_num+1,obj[j].date,obj[j].Ideparture,obj[j].Iarrival,obj[j].info);
-    // 날짜정렬
-//    date_sort(obj,ROWS);
-//출착지 정렬
-//    departure_sort(obj,ROWS);
-//도착지 정렬
-    arrival_sort(obj,ROWS);
-
-     // 배송정보기준 정렬
-//    delivery_info(obj,ROWS);
-    puts("after");
-    for (int j = 0; j < ROWS; ++j)
-        printf("obj%u{%d / %d / %d / %s }\n",obj[j].data_num+1,obj[j].date,obj[j].Ideparture,obj[j].Iarrival,obj[j].info);
+//    sortCommand(argc,argv,obj);
+    delivery_info(obj,ROWS);
+    for(i = 0; i < ROWS; i++)
+        printf("%d obj {%u / %d / %d / %d / %s}\n",i+1,obj[i].data_num,obj[i].date,obj[i].Ideparture,obj[i].Iarrival,obj[i].info );
     return 0;
 }
 
