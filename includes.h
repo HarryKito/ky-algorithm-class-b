@@ -42,13 +42,13 @@ int sortCommand(int argc,char** argv,object obj[])
         exit(0);
 
         //  날짜정렬
-//    date_sort(obj,ROWS);
+    date_sort(obj,ROWS);
 //  출착지 정렬
-//    departure_sort(obj,ROWS);
+ //  departure_sort(obj,ROWS);
 //  도착지 정렬
-//    arrival_sort(obj,ROWS);
-//  배송정보기준 정렬
-//    delivery_info(obj,ROWS);
+//  arrival_sort(obj,ROWS);
+// 배송정보기준 정렬
+//   delivery_info(obj,ROWS);
 
 
     }

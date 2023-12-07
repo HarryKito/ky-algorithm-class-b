@@ -8,33 +8,41 @@
 #include "sort.h"
 #include <string.h>
 
-// 퀵정렬을 위한 파티션 함수
+// A, B, C, D를 1, 2, 3, 4로 변환하는 함수
+int convert_to_numeric(char c) {
+    return c - 'A' + 1;
+}
+
+// 1, 2, 3, 4를 A, B, C, D로 변환하는 함수
+char convert_to_char(int num) {
+    return num + 'A' - 1;
+}
+
+// 특별한 퀵정렬을 위한 파티션 함수
 int del_partition(object arr[], int low, int high) {
-    char pivot[3];
-    strncpy(pivot, arr[high].info, 3);
+    // A, B, C, D를 1, 2, 3, 4로 매핑
+    char pivot = arr[high].info[0];
+
     int i = low - 1;
 
     for (int j = low; j <= high - 1; j++) {
-        if (strncmp(arr[j].info, pivot, 3) < 0) {
+        if (arr[j].info[0] < pivot) {
             i++;
-            // 구조체 교환
-            object temp = arr[i];
-//            arr[i] = arr[j];
-//            arr[j] = temp;
-            SWAP(&arr[i + 1],&arr[high],&temp);
+            // 구조체 필드만 변경
+            arr[i].info[0] = convert_to_char(convert_to_numeric(arr[i].info[0]));
+            arr[j].info[0] = convert_to_char(convert_to_numeric(arr[j].info[0]));
+            // 나머지 필드도 동일하게 처리 가능
         }
     }
 
-    // 구조체 교환
-    object temp = arr[i + 1];
-//    arr[i + 1] = arr[high];
-//    arr[high] = temp;
-    SWAP(&arr[i + 1],&arr[high],&temp);
+    // 구조체 필드만 변경
+    arr[i + 1].info[0] = convert_to_char(convert_to_numeric(arr[i + 1].info[0]));
+    arr[high].info[0] = convert_to_char(convert_to_numeric(arr[high].info[0]));
 
     return i + 1;
 }
 
-// 퀵 정렬 함수
+// 특별한 퀵 정렬 함수
 void del_quickSort(object arr[], int low, int high) {
     if (low < high) {
         int pi = del_partition(arr, low, high);
@@ -42,8 +50,5 @@ void del_quickSort(object arr[], int low, int high) {
         del_quickSort(arr, pi + 1, high);
     }
 }
-
-void delivery_info(object obj[],int count)
-{ del_quickSort(obj, 0, count - 1); }
 
 #endif //ALGORITHM_TEAM_6_DELIVERY_INFO_SORT_H
