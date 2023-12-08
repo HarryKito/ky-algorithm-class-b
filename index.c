@@ -15,21 +15,23 @@ int main(int argc,char** argv)
     char *cell;		            //전체 데이터 정보
     char row[MAXCHAR];          //열 데이터
 
-    // 파일에서 정보수집
+    // 파일 정보수집
     int i;
-    for(i = 0; feof(fp) == 0; i++)
+    while (fgets(row, MAXCHAR, fp) != NULL && i < ROWS)
     {
-        fgets(row, MAXCHAR, fp);
         cell = strtok(row, "\n");
-        obj[i] = reset_data(cell,strlen(cell),i);
+        if(cell != NULL)
+        {
+            obj[i] = reset_data(cell,strlen(cell),i);
+            i++;
+        }
     }
     // 프로그램 입력에 따른 정렬 기준 선택
-//    sortCommand(argc,argv,obj);
-    //delivery_info(obj,ROWS);
+    sortCommand(argc,argv,obj);
+    delivery_info(obj,ROWS);
     for(i = 0; i < ROWS; i++)
         printf("%d obj {%u / %d / %d / %d / %s}\n",i+1,obj[i].data_num,obj[i].date,obj[i].Ideparture,obj[i].Iarrival,obj[i].info );
 
     fclose(fp);
     return 0;
 }
-

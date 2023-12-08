@@ -31,11 +31,6 @@ FILE *openFile(char* file)
         return fp;
 }
 
-/*
- * TODO: 목표
- *  program {분류형식}에 따라서 나열.
- */
-
 /* 프로그램 실행 시 입력된 인자, 분류형식에 따라 분류하는 부가적 부분 */
 void sortCommand(int argc,char** argv,object obj[])
 {

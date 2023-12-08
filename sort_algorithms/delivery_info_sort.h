@@ -51,4 +51,6 @@ void del_quickSort(object arr[], int low, int high) {
     }
 }
 
+void delivery_info(object obj[],int count)
+{ del_quickSort(obj,0,count); }
 #endif //ALGORITHM_TEAM_6_DELIVERY_INFO_SORT_H
