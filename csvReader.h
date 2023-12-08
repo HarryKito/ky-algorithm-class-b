@@ -69,8 +69,8 @@ object reset_data(char *data,unsigned long len_data,int data_num)
     }
 
     //현재 택배 정보 파싱
-    obj.info[0] = data[len_data - 4];
-    obj.info[1] = data[len_data - 3];
+    obj.info[0] = data[len_data - 3];
+    obj.info[1] = data[len_data - 2];
     obj.info[2] = '\0'; // escape 문자 문제해결
 
     return obj;
