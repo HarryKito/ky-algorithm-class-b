@@ -12,7 +12,7 @@
 // count    :   오브젝트 파일 갯수
 // size     :   return 배열 갯수
 // Yearmin  :   연도 최소정보 저장
-int getYearMin_Max(object *obj,uint count,int *Yearmin)
+int getYears_Min(object *obj,uint count,int *Yearmin)
 {
     int min = INT32_MAX, max = 0;
     int years;
@@ -120,7 +120,7 @@ void sorting_radix(sorting_criterion criterion,object obj[], int count)
             int year_min;   // Minimum value according to years
             int i,j,cnt = 0;// 반복문에서 사용.. USE AFTER INIT!!
             int index;      // Year Index [현재 연도 - 최소 연도 = 0 ~ n 번 ]
-            int years = getYearMin_Max(obj,count,&year_min);
+            int years = getYears_Min(obj,count,&year_min);
 
             // Allocate for Indexing by years
             element *I_Result = malloc(sizeof(element)*years);
@@ -149,7 +149,6 @@ void sorting_radix(sorting_criterion criterion,object obj[], int count)
     int i;
     for (i = 0; i < count; i++)
         obj[i] = copy(result[i],i);
-    printf("sorted:%d\n",criterion);
 }
 // 예상 호출 구조
 // _main(args) -> date_sort(obj,cnt) -> sorting_radix()
@@ -160,7 +159,5 @@ void date_sort(object obj[],int count)
     sorting_radix(d10,obj,count);
     sorting_radix(m,obj,count);
     sorting_radix(y,obj,count);
-//    for (i = 0; i < count; i++)
-//        printf("year_sorted%u{%d / %d / %d / %s }\n",obj[i].data_num+1,obj[i].date,obj[i].Ideparture,obj[i].Iarrival,obj[i].info);
 }
 #endif //ALGORITHM_TEAM_6_DATE_SORT_H
