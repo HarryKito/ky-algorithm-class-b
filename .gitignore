@@ -37,7 +37,9 @@
 .DS_Store
 
 # 툴 환경
-.idea
+.idea/
+cmake-build-debug/
+
 
 # 테스트 환경
 test*
