@@ -28,7 +28,7 @@ int main(int argc,char** argv)
     }
     // 프로그램 입력에 따른 정렬 기준 선택
     sortCommand(argc,argv,obj);
-    delivery_info(obj,ROWS);
+    delivery_info(obj, 0, ROWS - 1);
     for(i = 0; i < ROWS; i++)
         printf("%d obj {%u / %d / %d / %d / %s}\n",i+1,obj[i].data_num,obj[i].date,obj[i].Ideparture,obj[i].Iarrival,obj[i].info );
 
