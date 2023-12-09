@@ -12,6 +12,19 @@
 // count    :   오브젝트 파일 갯수
 // size     :   return 배열 갯수
 // Yearmin  :   연도 최소정보 저장
+int getYears_Min(object *obj,uint count,int *Yearmin);
+
+//
+// 기수정렬
+// criterion    : 정렬 종류
+// obj          : 오브젝트 파일
+// count        : 오브젝트 파일 갯수
+void sorting_radix(sorting_criterion criterion,object obj[], int count);
+
+// 호출 구조 설계
+// _main(args) -> date_sort(obj,cnt) -> sorting_radix()
+void date_sort(object obj[],int count);
+
 int getYears_Min(object *obj,uint count,int *Yearmin)
 {
     int min = INT32_MAX, max = 0;
@@ -150,8 +163,7 @@ void sorting_radix(sorting_criterion criterion,object obj[], int count)
     for (i = 0; i < count; i++)
         obj[i] = copy(result[i],i);
 }
-// 예상 호출 구조
-// _main(args) -> date_sort(obj,cnt) -> sorting_radix()
+
 void date_sort(object obj[],int count)
 {
     int i;

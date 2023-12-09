@@ -9,14 +9,14 @@
 
 int main(int argc,char** argv)
 {
-    object obj[ROWS];
+    object obj[ROWS]; // 오브젝트 각종 CSV 정보 객체
 
     FILE *fp = openFile(0); //파일 객체를 담을 변수
     char *cell;		            //전체 데이터 정보
     char row[MAXCHAR];          //열 데이터
+    int i;
 
     // 파일 정보수집
-    int i;
     while (fgets(row, MAXCHAR, fp) != NULL && i < ROWS)
     {
         cell = strtok(row, "\n");
@@ -26,12 +26,19 @@ int main(int argc,char** argv)
             i++;
         }
     }
-    // 프로그램 입력에 따른 정렬 기준 선택
+
     sortCommand(argc,argv,obj);
-    delivery_info(obj, 0, ROWS - 1);
-    for(i = 0; i < ROWS; i++)
-        printf("%d obj {%u / %d / %d / %d / %s}\n",i+1,obj[i].data_num,obj[i].date,obj[i].Ideparture,obj[i].Iarrival,obj[i].info );
+
+//    for(i = 0; i < ROWS; i++)
+//        printf("%d obj {%u / %d / %d / %d / %s}\n",
+//               i+1
+//               ,obj[i].data_num
+//               ,obj[i].date
+//               ,obj[i].Ideparture
+//               ,obj[i].Iarrival
+//               ,obj[i].info
+//               );
 
     fclose(fp);
-    return 0;
+    return EXIT_SUCCESS;
 }

@@ -7,4 +7,4 @@ set(CMAKE_C_STANDARD 11)
 #    add_definitions(-DDEBUG)
 #endif()
 
-add_executable(algorithm-team-6 index.c)
+add_executable(algorithm-team-6 index.c timer/timer.c timer/timer.h)

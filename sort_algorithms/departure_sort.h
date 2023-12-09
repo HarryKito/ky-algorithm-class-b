@@ -43,5 +43,5 @@ void dep_quicksort(object arr[], int left, int right)
 }
 
 void departure_sort(object obj[],int count)
-{ dep_quicksort(obj,0,count); }
+{ dep_quicksort(obj,0,count - 1); }
 #endif //ALGORITHM_TEAM_6_DEPARTURE_SORT_H
