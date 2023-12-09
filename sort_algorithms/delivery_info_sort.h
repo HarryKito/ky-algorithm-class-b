@@ -8,49 +8,61 @@
 #include "sort.h"
 #include <string.h>
 
-// A, B, C, D를 1, 2, 3, 4로 변환하는 함수
-int convert_to_numeric(char c) {
-    return c - 'A' + 1;
+// 아스키 코드를 알파벳으로 변환하는 함수 (A~D)
+char asciiToAlphabet(int ascii) {
+    if (ascii >= 65 && ascii <= 68) {
+        return (char)ascii;
+    } else {
+        // 변환할 수 없는 경우에 대한 처리
+        return '?';
+    }
 }
 
-// 1, 2, 3, 4를 A, B, C, D로 변환하는 함수
-char convert_to_char(int num) {
-    return num + 'A' - 1;
+// 두 객체의 위치를 교환하는 함수
+void info_swap(object* a, object* b) {
+    object temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
-// 특별한 퀵정렬을 위한 파티션 함수
-int del_partition(object arr[], int low, int high) {
-    // A, B, C, D를 1, 2, 3, 4로 매핑
-    char pivot = arr[high].info[0];
+// 무작위로 피벗을 선택하는 함수
+int info_Random_Pivot(int low, int high) {
+    srand(time(NULL));
+    return low + rand() % (high - low + 1);
+}
 
+// 퀵정렬을 위한 파티션 함수
+int info_partition(object arr[], int low, int high) {
+    // 피벗을 중간값으로 선택
+    int pivotIndex = info_Random_Pivot(low, high);
+    info_swap(&arr[pivotIndex], &arr[high]);
+
+    char* pivot = arr[high].info;
     int i = low - 1;
 
-    for (int j = low; j <= high - 1; j++) {
-        if (arr[j].info[0] < pivot) {
+    for (int j = low; j < high; j++) {
+        // 아스키 코드를 알파벳으로 변환하여 비교
+        char aj = asciiToAlphabet((int)arr[j].info[0]);
+        char pivotChar = asciiToAlphabet((int)pivot[0]);
+
+        if (aj < pivotChar || (aj == pivotChar && atoi(arr[j].info + 1) < atoi(pivot + 1))) {
             i++;
-            // 구조체 필드만 변경
-            arr[i].info[0] = convert_to_char(convert_to_numeric(arr[i].info[0]));
-            arr[j].info[0] = convert_to_char(convert_to_numeric(arr[j].info[0]));
-            // 나머지 필드도 동일하게 처리 가능
+            info_swap(&arr[i], &arr[j]);
         }
     }
 
-    // 구조체 필드만 변경
-    arr[i + 1].info[0] = convert_to_char(convert_to_numeric(arr[i + 1].info[0]));
-    arr[high].info[0] = convert_to_char(convert_to_numeric(arr[high].info[0]));
-
+    info_swap(&arr[i + 1], &arr[high]);
     return i + 1;
 }
 
-// 특별한 퀵 정렬 함수
-void del_quickSort(object arr[], int low, int high) {
+// info를 기준으로 퀵정렬을 수행하는 함수
+void delivery_info(object arr[], int low, int high) {
     if (low < high) {
-        int pi = del_partition(arr, low, high);
-        del_quickSort(arr, low, pi - 1);
-        del_quickSort(arr, pi + 1, high);
+        int pi = info_partition(arr, low, high);
+
+        delivery_info(arr, low, pi - 1);
+        delivery_info(arr, pi + 1, high);
     }
 }
 
-void delivery_info(object obj[],int count)
-{ del_quickSort(obj,0,count); }
 #endif //ALGORITHM_TEAM_6_DELIVERY_INFO_SORT_H
