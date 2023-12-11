@@ -112,30 +112,27 @@ void sortCommand(int argc,char** argv,object obj[])
     { fprintf(stderr, "Arguments not detected.\n Usage : %s\t[sort target]\n\t\t\t\t  date\n\t\t\t\t  departure\n\t\t\t\t  arrival\n\t\t\t\t  information\n\n  for example >> %s date\n", argv[0],argv[0]); }
 }
 
-void saveCSV(object obj[], char *file)
-{
+#define DEFAULT_FILE_PATH "./data/output.csv"
+#define DATE_FORMAT "%04d-%02d-%02d"
+
+void saveCSV(object obj[], char *file) {
     FILE *fp;
-    file = !file ? "./data/output.csv" : file;
-    if(!(fp = fopen(file,"w")))
-    {
-        fputs("Cannot write file.",stderr);
-        exit(1);
+    file = (file == NULL) ? DEFAULT_FILE_PATH : file;
+
+    if (!(fp = fopen(file, "w"))) {
+        fprintf(stderr, "Cannot write to file: %s\n", file);
+        exit(EXIT_FAILURE);
     }
-    else
-    {
-        int i;
-        for (i = 0; i < ROWS; ++i)  // object to csv
-        {
-            fprintf(fp, "%04d-%02d-%02d,%d,%d,%s\n",
-                    ((int)(obj[i].date/10000)),
-                    ((int)(obj[i].date %10000) / 100),
-                    ((int)(obj[i].date % 100)),
-                    obj[i].Iarrival,
-                    obj[i].Ideparture,
-                    obj[i].info
-                    );
-        }
+
+    for (int i = 0; i < ROWS; ++i) {
+        int year = (int)(obj[i].date / 10000);
+        int month = (int)(obj[i].date % 10000) / 100;
+        int day = (int)(obj[i].date % 100);
+
+        fprintf(fp, DATE_FORMAT ",%d,%d,%s\n", year, month, day, obj[i].Iarrival, obj[i].Ideparture, obj[i].info);
     }
+
     fclose(fp);
 }
+
 #endif

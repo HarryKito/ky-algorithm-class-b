@@ -42,5 +42,5 @@ void ari_quicksort(object arr[], int left, int right)
 
 // 도착정보
 void arrival_sort(object obj[],int count)
-{ ari_quicksort(obj,0,count); }
+{ ari_quicksort(obj,0,count - 1); }
 #endif //ALGORITHM_TEAM_6_ARRIVAL_SORT_H
