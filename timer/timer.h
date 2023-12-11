@@ -7,6 +7,6 @@
 
 #include <time.h>
 
-clock_t timer();
+inline clock_t timer();
 
 #endif //ALGORITHM_TEAM_6_TIMER_H

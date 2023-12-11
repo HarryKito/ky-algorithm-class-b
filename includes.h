@@ -5,7 +5,7 @@
 #include <string.h>
 #include <time.h>
 #include <stdbool.h>
-#include "timer/timer.h"
+//#include "timer/timer.h"
 #include <unistd.h>
 
 #include "sort_algorithms/delivery_info_sort.h"
@@ -46,6 +46,7 @@ FILE *openFile(char* file)
 /* 프로그램 실행 시 입력된 인자, 분류형식에 따라 분류하는 부가적 부분 */
 void sortCommand(int argc,char** argv,object obj[])
 {
+    int i;
     char result_file[35];
 
     // 今日 information
@@ -58,36 +59,36 @@ void sortCommand(int argc,char** argv,object obj[])
         if(strcmp(argv[1],"date") == 0) //  date 정렬
         {
             puts("date sort execute");
-            timer();
+//            timer();
             date_sort(obj, ROWS);
-            printf("done in %lu ms\n",timer());
+//            printf("done in %lu clk\n",timer());
             saveCSV(obj,"./data/date_info.csv");
         }
 
         else if(strcmp(argv[1],"departure") == 0) //  departure 정렬
         {
             puts("departure sort execute");
-            timer();
+//            timer();
             departure_sort(obj, ROWS);
-            printf("done in %lu ms\n",timer());
+//            printf("done in %lu clk\n",timer());
             saveCSV(obj,"./data/departure_info.csv");
         }
 
         else if(strcmp(argv[1],"arrival") == 0) //  arrival 정렬
         {
             puts("arrival sort execute");
-            timer();
+//            timer();
             arrival_sort(obj, ROWS);
-            printf("done in %lu ms\n",timer());
+//            printf("done in %lu clk\n",timer());
             saveCSV(obj,"./data/arrival_info.csv");
         }
 
         else if(strcmp(argv[1],"information") == 0) //  delivery information 정렬
         {
             puts("information sort execute");
-            timer();
+//            timer();
             delivery_info(obj,0, ROWS - 1);
-            printf("done in %lu ms\n",timer());
+//            printf("done in %lu clk\n",timer());
             saveCSV(obj,"./data/delivery_info.csv");
         }
         else
@@ -95,8 +96,17 @@ void sortCommand(int argc,char** argv,object obj[])
             fprintf(stderr," 잘못된 인자 값\n");
             for (int i = 0; i < argc; ++i)
             { fprintf(stderr,"argv%d : {%s}\n", i, argv[i]); }
+            exit(1);
         }
         saveCSV(obj,result_file);
+        puts("\t date \t| departure | arrival | info ");
+        for(i=0;i<10;i++)
+            printf("Result { %d \t|%d \t|%d \t|%s}\n"
+                   ,obj[i].date
+                   ,obj[i].Ideparture
+                   ,obj[i].Iarrival
+                   ,obj[i].info
+                   );
     }
     else
     { fprintf(stderr, "Arguments not detected.\n Usage : %s\t[sort target]\n\t\t\t\t  date\n\t\t\t\t  departure\n\t\t\t\t  arrival\n\t\t\t\t  information\n\n  for example >> %s date\n", argv[0],argv[0]); }

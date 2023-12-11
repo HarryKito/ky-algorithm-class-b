@@ -4,7 +4,8 @@
 
 #include "timer.h"
 
-inline clock_t timer()
+// 클럭 타임인뎅.. 
+clock_t timer()
 {
     static clock_t start = 0;
 
