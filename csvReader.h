@@ -13,7 +13,7 @@ enum location {
     SAEJONG = 44,
     BUSAN = 51,
     ULSAN = 52,
-    DAEGU = 32,
+    DAEGU = 53,
     GYUNGBOOK = 54,
     GYUNGNAM = 55,
     JEONNAM = 61,

@@ -124,7 +124,7 @@ void saveCSV(object obj[], char *file)
     else
     {
         int i;
-        for (i = 0; i < ROWS; ++i)  // object csv 화
+        for (i = 0; i < ROWS; ++i)  // object to csv
         {
             fprintf(fp, "%04d-%02d-%02d,%d,%d,%s\n",
                     ((int)(obj[i].date/10000)),
