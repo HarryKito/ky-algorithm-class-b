@@ -98,6 +98,7 @@ void sortCommand(int argc,char** argv,object obj[])
             { fprintf(stderr,"argv%d : {%s}\n", i, argv[i]); }
             exit(1);
         }
+
         saveCSV(obj,result_file);
         puts("\t date \t| departure | arrival | info ");
         for(i=0;i<10;i++)
